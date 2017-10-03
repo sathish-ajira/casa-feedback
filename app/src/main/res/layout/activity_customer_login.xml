@@ -101,13 +101,13 @@
                         android:background="#c1c1c1" />
 
                     <Button
-                        android:id="@+id/next"
+                        android:id="@+id/submit"
                         android:layout_width="180dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="80dp"
                         android:background="@drawable/button_background"
-                        android:text="Login"
+                        android:text="Submit"
                         android:textColor="@android:color/white"
                         android:textSize="20dp" />
 
