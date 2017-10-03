@@ -1,13 +1,15 @@
-package tech.ajira.casa_feedback;
+package tech.ajira.casa_feedback.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RetailerLogin extends AppCompatActivity {
+import tech.ajira.casa_feedback.R;
+
+public class CustomerLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retailer_login);
+        setContentView(R.layout.activity_customer_login);
     }
 }
