@@ -1,5 +1,5 @@
 
-package tech.ajira.casa_feedback.activities;
+package tech.ajira.casa_feedback.chartCustomViews;
 
 import android.content.Context;
 import android.widget.TextView;

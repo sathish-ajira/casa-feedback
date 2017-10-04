@@ -24,8 +24,7 @@
             android:label="Customer Login"
             android:screenOrientation="portrait" />
         <activity android:name=".activities.Dashboard"
-            android:label="Dashboard"
-            android:theme="@style/NoActionBar"/>
+            android:label="Dashboard" />
     </application>
 
 </manifest>

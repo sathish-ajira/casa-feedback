@@ -1,4 +1,4 @@
-package tech.ajira.casa_feedback.activities;
+package tech.ajira.casa_feedback.chartCustomViews;
 
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;

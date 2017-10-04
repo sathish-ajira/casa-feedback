@@ -1,4 +1,4 @@
-package tech.ajira.casa_feedback.custom_font;
+package tech.ajira.casa_feedback.customFonts;
 
 import android.content.Context;
 import android.graphics.Typeface;

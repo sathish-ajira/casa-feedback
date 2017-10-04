@@ -1,6 +1,6 @@
 package tech.ajira.casa_feedback.activities;
 
-import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.RectF;
@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -38,17 +40,36 @@ import com.github.mikephil.charting.utils.Utils;
 import java.util.ArrayList;
 
 import tech.ajira.casa_feedback.R;
+import tech.ajira.casa_feedback.chartCustomViews.DayAxisValueFormatter;
+import tech.ajira.casa_feedback.chartCustomViews.MyAxisValueFormatter;
+import tech.ajira.casa_feedback.chartCustomViews.MyMarkerView;
+import tech.ajira.casa_feedback.chartCustomViews.XYMarkerView;
+import tech.ajira.casa_feedback.commonHelpers.CommonHelpers;
 
 public class Dashboard extends AppCompatActivity implements OnChartGestureListener {
 
     protected LineChart lineChart;
     private BarChart mChart;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         initLineChart();
+        initBarChart();
+        setCustomFont();
+    }
+
+    private void setCustomFont(){
+        try {
+            this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            this.getSupportActionBar().setCustomView(CommonHelpers.actionBarTitle(this));
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void initBarChart(){
         mChart = (BarChart) findViewById(R.id.chart1);
 
         mChart.setDrawBarShadow(false);
@@ -186,7 +207,6 @@ public class Dashboard extends AppCompatActivity implements OnChartGestureListen
         lineChart = (LineChart) findViewById(R.id.chart2);
         lineChart.setOnChartGestureListener(this);
         lineChart.setDrawGridBackground(false);
-
         // no description text
         lineChart.getDescription().setEnabled(false);
 

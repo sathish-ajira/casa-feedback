@@ -1,5 +1,5 @@
 
-package tech.ajira.casa_feedback.activities;
+package tech.ajira.casa_feedback.chartCustomViews;
 
 import android.content.Context;
 import android.widget.TextView;
@@ -14,11 +14,7 @@ import java.text.DecimalFormat;
 
 import tech.ajira.casa_feedback.R;
 
-/**
- * Custom implementation of the MarkerView.
- *
- * @author Philipp Jahoda
- */
+
 public class XYMarkerView extends MarkerView {
 
     private TextView tvContent;

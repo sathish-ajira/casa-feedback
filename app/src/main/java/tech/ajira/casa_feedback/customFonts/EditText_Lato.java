@@ -1,24 +1,24 @@
-package tech.ajira.casa_feedback.custom_font;
+package tech.ajira.casa_feedback.customFonts;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.EditText;
 
 
-public class TextView_Lato extends TextView {
+public class EditText_Lato extends EditText {
 
-    public TextView_Lato(Context context, AttributeSet attrs, int defStyle) {
+    public EditText_Lato(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public TextView_Lato(Context context, AttributeSet attrs) {
+    public EditText_Lato(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TextView_Lato(Context context) {
+    public EditText_Lato(Context context) {
         super(context);
         init();
     }
