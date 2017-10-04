@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_group_1">
+        <item
+            android:id="@+id/menu_feed"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/menu_direct"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Customer feedback" />
+        <item
+            android:id="@+id/menu_news"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Add Questions" />
+        <item
+            android:id="@+id/menu_popular"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Change Customer" />
+        <item
+            android:id="@+id/menu_photos_nearby"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Logout" />
+        <item
+            android:id="@+id/menu_photo_you_liked"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Exit" />
+    </group>
+</menu>

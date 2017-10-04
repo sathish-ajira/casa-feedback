@@ -6,11 +6,16 @@ import android.graphics.DashPathEffect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +41,8 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
+import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
+import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 
 import java.util.ArrayList;
 
@@ -45,11 +52,13 @@ import tech.ajira.casa_feedback.chartCustomViews.MyAxisValueFormatter;
 import tech.ajira.casa_feedback.chartCustomViews.MyMarkerView;
 import tech.ajira.casa_feedback.chartCustomViews.XYMarkerView;
 import tech.ajira.casa_feedback.commonHelpers.CommonHelpers;
+import tech.ajira.casa_feedback.fragments.MenuListFragment;
 
-public class Dashboard extends AppCompatActivity implements OnChartGestureListener {
+public class Dashboard extends AppCompatActivity {
 
     protected LineChart lineChart;
     private BarChart mChart;
+    private FlowingDrawer mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +67,60 @@ public class Dashboard extends AppCompatActivity implements OnChartGestureListen
         initLineChart();
         initBarChart();
         setCustomFont();
+        initFlowingDrawer();
+    }
+    private void initFlowingDrawer(){
+        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
+        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
+        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+        setupToolbar();
+        setupMenu();
     }
 
+    protected void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_menu_white);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawer.toggleMenu();
+            }
+        });
+    }
+
+    private void setupMenu() {
+        FragmentManager fm = getSupportFragmentManager();
+        MenuListFragment mMenuFragment = (MenuListFragment) fm.findFragmentById(R.id.id_container_menu);
+        if (mMenuFragment == null) {
+            mMenuFragment = new MenuListFragment();
+            fm.beginTransaction().add(R.id.id_container_menu, mMenuFragment).commit();
+        }
+
+//        mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
+//            @Override
+//            public void onDrawerStateChange(int oldState, int newState) {
+//                if (newState == ElasticDrawer.STATE_CLOSED) {
+//                    Log.i("MainActivity", "Drawer STATE_CLOSED");
+//                }
+//            }
+//
+//            @Override
+//            public void onDrawerSlide(float openRatio, int offsetPixels) {
+//                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
+//            }
+//        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawer.isMenuVisible()) {
+            mDrawer.closeMenu();
+        } else {
+            super.onBackPressed();
+        }
+    }
     private void setCustomFont(){
         try {
             this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -204,8 +265,7 @@ public class Dashboard extends AppCompatActivity implements OnChartGestureListen
     protected RectF mOnValueSelectedRectF = new RectF();
 
     private void initLineChart(){
-        lineChart = (LineChart) findViewById(R.id.chart2);
-        lineChart.setOnChartGestureListener(this);
+        lineChart = (LineChart) findViewById(R.id.lineChart);
         lineChart.setDrawGridBackground(false);
         // no description text
         lineChart.getDescription().setEnabled(false);
@@ -214,8 +274,11 @@ public class Dashboard extends AppCompatActivity implements OnChartGestureListen
         lineChart.setTouchEnabled(true);
 
         // enable scaling and dragging
-        lineChart.setDragEnabled(true);
-        lineChart.setScaleEnabled(true);
+        lineChart.setDragEnabled(false);
+        lineChart.setDoubleTapToZoomEnabled(false);
+        lineChart.setPinchZoom(false);
+        lineChart.setScaleEnabled(false);
+
         // lineChart.setScaleXEnabled(true);
         // lineChart.setScaleYEnabled(true);
 
@@ -272,6 +335,17 @@ public class Dashboard extends AppCompatActivity implements OnChartGestureListen
 
         lineChart.getAxisRight().setEnabled(false);
 
+        YAxis yAxisL = lineChart.getAxisLeft();
+        yAxisL.setDrawGridLines(false);
+        yAxisL.setDrawAxisLine(false);
+        yAxisL.setDrawLabels(false);
+
+
+        YAxis yAxisR = lineChart.getAxisRight();
+        yAxisR.setDrawGridLines(false);
+        yAxisR.setDrawAxisLine(false);
+        yAxisR.setDrawLabels(false);
+        // set data
         //lineChart.getViewPortHandler().setMaximumScaleY(2f);
         //lineChart.getViewPortHandler().setMaximumScaleX(2f);
 
@@ -362,49 +436,5 @@ public class Dashboard extends AppCompatActivity implements OnChartGestureListen
                 Log.i("Nothing selected", "Nothing selected.");
             }
         });
-    }
-
-    @Override
-    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-        Log.i("Gesture", "START, x: " + me.getX() + ", y: " + me.getY());
-    }
-
-    @Override
-    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-        Log.i("Gesture", "END, lastGesture: " + lastPerformedGesture);
-
-        // un-highlight values after the gesture is finished and no single-tap
-        if(lastPerformedGesture != ChartTouchListener.ChartGesture.SINGLE_TAP)
-            lineChart.highlightValues(null); // or highlightTouch(null) for callback to onNothingSelected(...)
-    }
-
-    @Override
-    public void onChartLongPressed(MotionEvent me) {
-        Log.i("LongPress", "Chart longpressed.");
-    }
-
-    @Override
-    public void onChartDoubleTapped(MotionEvent me) {
-        Log.i("DoubleTap", "Chart double-tapped.");
-    }
-
-    @Override
-    public void onChartSingleTapped(MotionEvent me) {
-        Log.i("SingleTap", "Chart single-tapped.");
-    }
-
-    @Override
-    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
-        Log.i("Fling", "Chart flinged. VeloX: " + velocityX + ", VeloY: " + velocityY);
-    }
-
-    @Override
-    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
-        Log.i("Scale / Zoom", "ScaleX: " + scaleX + ", ScaleY: " + scaleY);
-    }
-
-    @Override
-    public void onChartTranslate(MotionEvent me, float dX, float dY) {
-        Log.i("Translate / Move", "dX: " + dX + ", dY: " + dY);
     }
 }
