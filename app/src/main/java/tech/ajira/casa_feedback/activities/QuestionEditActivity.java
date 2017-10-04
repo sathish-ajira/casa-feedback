@@ -16,10 +16,11 @@ import tech.ajira.casa_feedback.R;
 import tech.ajira.casa_feedback.commonHelpers.CommonHelpers;
 import tech.ajira.casa_feedback.models.Feedback;
 import tech.ajira.casa_feedback.recyclerView.FeedBackViewAdapter;
+import tech.ajira.casa_feedback.recyclerView.QuestionEditViewAdapter;
 
 public class QuestionEditActivity extends AppCompatActivity {
 
-    FeedBackViewAdapter feedBackViewAdapter;
+    QuestionEditViewAdapter feedBackViewAdapter;
     RecyclerView recyclerView;
     GridLayoutManager gridLayoutManager;
 
@@ -48,7 +49,7 @@ public class QuestionEditActivity extends AppCompatActivity {
         questionList.add(new Feedback("Compared to similar stores, how fair are this store's prices?"));
         questionList.add(new Feedback("How helpful are the employees at this store?"));
         questionList.add(new Feedback("How friendly are the employees at this store?"));
-        questionList.add(new Feedback("How likely are you to recommend this store to others"));
+        questionList.add(new Feedback("How likely are you to recommend this store to others?"));
         gridLayoutManager = new GridLayoutManager(QuestionEditActivity.this, 1);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -56,7 +57,7 @@ public class QuestionEditActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setFocusable(false);
 
-        feedBackViewAdapter = new FeedBackViewAdapter(QuestionEditActivity.this, questionList);
+        feedBackViewAdapter = new QuestionEditViewAdapter(QuestionEditActivity.this, questionList);
         recyclerView.setAdapter(feedBackViewAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.upFab);

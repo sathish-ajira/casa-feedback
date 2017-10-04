@@ -48,7 +48,7 @@ public class CustomerFeedback extends AppCompatActivity {
         questionList.add(new Feedback("Compared to similar stores, how fair are this store's prices?"));
         questionList.add(new Feedback("How helpful are the employees at this store?"));
         questionList.add(new Feedback("How friendly are the employees at this store?"));
-        questionList.add(new Feedback("How likely are you to recommend this store to others"));
+        questionList.add(new Feedback("How likely are you to recommend this store to others?"));
         gridLayoutManager = new GridLayoutManager(CustomerFeedback.this, 1);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);

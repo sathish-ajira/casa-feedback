@@ -23,7 +23,7 @@ public class QuestionEditViewAdapter extends RecyclerView.Adapter<FeedBackViewHo
 
     @Override
     public FeedBackViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_feedback, null);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_edit_question, null);
         FeedBackViewHolders rcv = new FeedBackViewHolders(layoutView);
         return rcv;
     }
