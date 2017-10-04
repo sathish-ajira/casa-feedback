@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class CommonHelpers {
 
-    public static TextView actionBarTitle(Context context){
+    public static TextView actionBarTitle(Context context, String title){
         String ExternalFontPath;
         Typeface FontLoaderTypeface;
         TextView TextViewNewFont = new TextView(context);
@@ -17,7 +17,7 @@ public class CommonHelpers {
 
         TextViewNewFont.setLayoutParams(layoutparams);
 
-        TextViewNewFont.setText("Dashboard");
+        TextViewNewFont.setText(title);
 
         TextViewNewFont.setTextSize(20);
 

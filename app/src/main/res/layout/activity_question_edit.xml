@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradiant"
-    tools:context="tech.ajira.casa_feedback.activities.CustomerFeedback">
+    tools:context="tech.ajira.casa_feedback.activities.QuestionEditActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
         android:scrollbars="vertical" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/upFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textSize="20dp"
-        android:text="Submit"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:tint="@color/white"
+        android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

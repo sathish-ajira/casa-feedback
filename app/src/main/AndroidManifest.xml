@@ -27,7 +27,8 @@
             android:name=".activities.Dashboard"
             android:label="Dashboard"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".activities.CustomerFeedback"></activity>
+        <activity android:name=".activities.CustomerFeedback" />
+        <activity android:name=".activities.QuestionEditActivity"></activity>
     </application>
 
 </manifest>

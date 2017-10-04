@@ -24,9 +24,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //compile 'com.github.rerlanggas:ExceptionHandler:1.0.0'
-    // compile 'com.github.blennerSilva:AwesomeDialog:2.0.5'
-    // compile 'com.github.scottyab:showhidepasswordedittext:0.8'
+    compile 'com.github.rerlanggas:ExceptionHandler:1.0.0'
+    compile 'com.github.blennerSilva:AwesomeDialog:2.0.5'
+    compile 'com.github.scottyab:showhidepasswordedittext:0.8'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
@@ -42,5 +42,6 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'com.mxn.soul:flowingdrawer-core:2.0.0'
     compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.github.sujithkanna:smileyrating:1.6.8'
     testCompile 'junit:junit:4.12'
 }

@@ -17,7 +17,7 @@ import tech.ajira.casa_feedback.commonHelpers.CommonHelpers;
 import tech.ajira.casa_feedback.models.Feedback;
 import tech.ajira.casa_feedback.recyclerView.FeedBackViewAdapter;
 
-public class CustomerFeedback extends AppCompatActivity {
+public class QuestionEditActivity extends AppCompatActivity {
 
     FeedBackViewAdapter feedBackViewAdapter;
     RecyclerView recyclerView;
@@ -26,7 +26,7 @@ public class CustomerFeedback extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_feedback);
+        setContentView(R.layout.activity_question_edit);
 
         initializeRecyclerViews();
         setCustomFont();
@@ -35,7 +35,7 @@ public class CustomerFeedback extends AppCompatActivity {
     private void setCustomFont(){
         try {
             this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            this.getSupportActionBar().setCustomView(CommonHelpers.actionBarTitle(this, "Customer Feedback"));
+            this.getSupportActionBar().setCustomView(CommonHelpers.actionBarTitle(this, "Add and Edit Feedback Questions"));
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -49,15 +49,23 @@ public class CustomerFeedback extends AppCompatActivity {
         questionList.add(new Feedback("How helpful are the employees at this store?"));
         questionList.add(new Feedback("How friendly are the employees at this store?"));
         questionList.add(new Feedback("How likely are you to recommend this store to others"));
-        gridLayoutManager = new GridLayoutManager(CustomerFeedback.this, 1);
+        gridLayoutManager = new GridLayoutManager(QuestionEditActivity.this, 1);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setFocusable(false);
 
-        feedBackViewAdapter = new FeedBackViewAdapter(CustomerFeedback.this, questionList);
+        feedBackViewAdapter = new FeedBackViewAdapter(QuestionEditActivity.this, questionList);
         recyclerView.setAdapter(feedBackViewAdapter);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.upFab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 }

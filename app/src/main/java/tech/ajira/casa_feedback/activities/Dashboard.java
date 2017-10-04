@@ -124,7 +124,7 @@ public class Dashboard extends AppCompatActivity {
     private void setCustomFont(){
         try {
             this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            this.getSupportActionBar().setCustomView(CommonHelpers.actionBarTitle(this));
+            this.getSupportActionBar().setCustomView(CommonHelpers.actionBarTitle(this, "Dashboard"));
         } catch(Exception e){
             e.printStackTrace();
         }

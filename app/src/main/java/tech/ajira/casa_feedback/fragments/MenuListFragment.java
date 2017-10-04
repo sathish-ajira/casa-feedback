@@ -19,6 +19,7 @@ import tech.ajira.casa_feedback.R;
 import tech.ajira.casa_feedback.activities.CustomerFeedback;
 import tech.ajira.casa_feedback.activities.CustomerLogin;
 import tech.ajira.casa_feedback.activities.Dashboard;
+import tech.ajira.casa_feedback.activities.QuestionEditActivity;
 
 /**
  * Created by mxn on 2016/12/13.
@@ -46,23 +47,14 @@ public class MenuListFragment extends Fragment {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 if (menuItem.getTitle().equals("Customer feedback")){
                     startActivity(new Intent(view.getContext(), CustomerFeedback.class));
+                } else if (menuItem.getTitle().equals("Add Questions")){
+                    startActivity(new Intent(view.getContext(), QuestionEditActivity.class));
                 }
                 return false;
             }
         }) ;
-        setupHeader();
         return  view ;
     }
 
-    private void setupHeader() {
-        int avatarSize = getResources().getDimensionPixelSize(R.dimen.global_menu_avatar_size);
-//        String profilePhoto = getResources().getString(R.string.user_profile_photo);
-//        Picasso.with(getActivity())
-//                .load(profilePhoto)
-//                .placeholder(R.drawable.img_circle_placeholder)
-//                .resize(avatarSize, avatarSize)
-//                .centerCrop()
-//                .into(ivMenuUserProfilePhoto);
-    }
 
 }
